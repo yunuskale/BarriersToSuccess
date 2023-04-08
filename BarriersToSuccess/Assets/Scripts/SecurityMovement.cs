@@ -6,26 +6,51 @@ public class SecurityMovement : MonoBehaviour
 {
     public Vector3 pointA;
     public Vector3 pointB;
-    private Vector3 target;
-    [SerializeField] private int speed;
-    void Start()
-    {
-        target = pointA;// m Start() fonksiyonu içerisinde, hedef deðiþkenini ilk olarak pointA olarak ayarladým.
-    }
-    void FixedUpdate()
-    {
-        // m Hedefe doðru hareket et
-        transform.position = Vector3.MoveTowards(transform.position, target, speed * Time.deltaTime);
+    public float speed = 1f;
 
-        // m Eðer hedefe ulaþtýysan, hedefi deðiþtir
-        if (transform.position == target)
+    private void Start()
+    {
+        StartCoroutine(Walk());
+    }
+    IEnumerator Walk()
+    {
+        while (true)
         {
-            target = (target == pointA) ? pointB : pointA;
+            yield return null;
+            Vector3 yon = pointA - transform.position;
+            transform.LookAt(pointA);
+            if (yon.magnitude > 0.3f)
+            {
+                yon.Normalize();
+                transform.position += yon * speed * Time.deltaTime;
+            }
+            else
+            {
+                break;
+            }
         }
+        while (true)
+        {
+            yield return null;
+            Vector3 yon = pointB - transform.position;
+            transform.LookAt(pointB);
+            if (yon.magnitude > 0.3f)
+            {
+                yon.Normalize();
+                transform.position += yon * speed * Time.deltaTime;
+            }
+            else
+            {
+                break;
+            }
+        }
+        StartCoroutine(Walk());
     }
-
-    void Update()
+    private void OnTriggerEnter(Collider other)
     {
-        
+        if(other.CompareTag("player") && !other.GetComponent<Movement>().isHide)
+        {
+            GameManager.instance.Lose();
+        }
     }
 }

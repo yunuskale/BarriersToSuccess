@@ -15,10 +15,14 @@ public class Movement : MonoBehaviour
     private Vector3 m_currentDirection = Vector3.zero;
     private float m_currentV = 0;
     private float m_currentH = 0;
-    [SerializeField] private Vector3 rot;
+    public bool isHide;
 
-   
-    
+    private void Start()
+    {
+        cameraTransform = Camera.main.transform;
+        cameraTransform.GetComponent<CameraManager>().playerTransform = transform;
+    }
+
     void Update()
     {
 
@@ -36,6 +40,10 @@ public class Movement : MonoBehaviour
 
         if (v != 0 && h != 0)
         {
+            if(isHide)
+            {
+                CancelHide();
+            }
             anim.SetBool("run", true);
             m_currentDirection = Vector3.Slerp(m_currentDirection, direction, Time.deltaTime * interpolation);
             transform.SetPositionAndRotation(transform.position + m_currentDirection * moveSpeed * Time.deltaTime, Quaternion.LookRotation(m_currentDirection));
@@ -51,5 +59,17 @@ public class Movement : MonoBehaviour
         //transform.position = clampingPos;
     }
 
+    public void Hide()
+    {
+        isHide = true;
+        transform.GetChild(0).gameObject.SetActive(false);
+        transform.GetChild(1).gameObject.SetActive(true);
+    }
+    public void CancelHide()
+    {
+        isHide = false;
+        transform.GetChild(0).gameObject.SetActive(true);
+        transform.GetChild(1).gameObject.SetActive(false);
+    }
 }
 

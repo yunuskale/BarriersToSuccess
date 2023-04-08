@@ -70,31 +70,31 @@ public class DoubleSlidingDoorController : MonoBehaviour {
 		}
 	}
 
-	void OnTriggerEnter(Collider other) {
-		
-		if (status != DoubleSlidingDoorStatus.Animating) {
-			if (status == DoubleSlidingDoorStatus.Closed) {
-				StartCoroutine ("OpenDoors");
-			}
-		}
+	//void OnTriggerEnter(Collider other) {
+	//	
+	//	if (status != DoubleSlidingDoorStatus.Animating) {
+	//		if (status == DoubleSlidingDoorStatus.Closed) {
+	//			StartCoroutine ("OpenDoors");
+	//		}
+	//	}
+	//
+	//	if (other.GetComponent<Collider>().gameObject.layer == LayerMask.NameToLayer ("Characters")) {
+	//		objectsOnDoorArea++;
+	//	}
+	//}
+	//
+	//void OnTriggerStay(Collider other) {
+	//	
+	//}
+	//
+	//void OnTriggerExit(Collider other) {
+	//	//	Keep tracking of objects on the door
+	//	if (other.GetComponent<Collider>().gameObject.layer == LayerMask.NameToLayer ("Characters")) {
+	//		objectsOnDoorArea--;
+	//	}
+	//}
 
-		if (other.GetComponent<Collider>().gameObject.layer == LayerMask.NameToLayer ("Characters")) {
-			objectsOnDoorArea++;
-		}
-	}
-
-	void OnTriggerStay(Collider other) {
-		
-	}
-
-	void OnTriggerExit(Collider other) {
-		//	Keep tracking of objects on the door
-		if (other.GetComponent<Collider>().gameObject.layer == LayerMask.NameToLayer ("Characters")) {
-			objectsOnDoorArea--;
-		}
-	}
-
-	IEnumerator OpenDoors () {
+	public IEnumerator OpenDoors () {
 
 		if (doorOpeningSoundClip != null) {
 			audioSource.PlayOneShot (doorOpeningSoundClip, 0.7F);
@@ -112,11 +112,11 @@ public class DoubleSlidingDoorController : MonoBehaviour {
 
 			yield return null;
 		}
-
+		yield return new WaitForSeconds(1f);
 		status = DoubleSlidingDoorStatus.Open;
 
 	}
-
+	
 	IEnumerator CloseDoors () {
 
 		if (doorClosingSoundClip != null) {

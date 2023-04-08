@@ -32,10 +32,11 @@ public class UIManager : MonoBehaviour
     }
     public void StartGame()
     {
+        timeText.text = "";
         bar.fillAmount = 0;
         for (int i = 0; i < cardButtons.Length; i++)
         {
-            cardButtons[i].GetComponent<Button>().interactable = true;
+            cardButtons[i].GetComponent<Button>().interactable = false;
             cardButtons[i].GetComponent<PassCard>().password = 0;
             cardButtons[i].transform.GetChild(0).GetComponent<Image>().color = new Color(0.39f, 0.39f, 0.39f, 0.7f);
         }
@@ -63,8 +64,8 @@ public class UIManager : MonoBehaviour
         altKapan.DOAnchorPosY(0, 1f);
         ustKapan.DOAnchorPosY(0, 1f).OnComplete(() =>
         {
-            ustKapan.anchoredPosition = Vector2.up * Screen.height;
-            altKapan.anchoredPosition = Vector2.down * Screen.height;
+            ustKapan.anchoredPosition = Vector2.up * Screen.height * 1.3f;
+            altKapan.anchoredPosition = Vector2.down * Screen.height * 1.3f;
             losePanel.SetActive(true);
             currentPanel = losePanel;
             

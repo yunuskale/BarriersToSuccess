@@ -8,7 +8,8 @@ public class PassCard : MonoBehaviour
 
     public void PassCardClicked()
     {
-        CollisionManager.instance.door.GetComponent<Door>().OpenDoor(password);
+        if(CollisionManager.instance.door != null)
+            CollisionManager.instance.door.GetComponent<Door>().OpenDoor(password);
     }
     
 }

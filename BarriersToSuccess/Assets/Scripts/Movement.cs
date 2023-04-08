@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using DG.Tweening;
 public class Movement : MonoBehaviour
 {
    
@@ -61,9 +61,15 @@ public class Movement : MonoBehaviour
 
     public void Hide()
     {
-        isHide = true;
-        transform.GetChild(0).gameObject.SetActive(false);
-        transform.GetChild(1).gameObject.SetActive(true);
+        if(!isHide)
+        {
+            transform.GetChild(2).GetComponent<ParticleSystem>().Play();
+            isHide = true;
+            transform.GetChild(0).gameObject.SetActive(false);
+            transform.GetChild(1).transform.position += Vector3.up;
+            transform.GetChild(1).gameObject.SetActive(true);
+            transform.GetChild(1).transform.DOLocalMoveY(0.42f, 0.5f);
+        }
     }
     public void CancelHide()
     {

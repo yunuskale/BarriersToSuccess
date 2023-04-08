@@ -45,6 +45,7 @@ public class CollisionManager : MonoBehaviour
             GameManager.instance.Win();
             winParticle.transform.position = other.transform.position;
             winParticle.Play();
+            GetComponent<Movement>().enabled = false;
         }
     }
     private void OnTriggerExit(Collider other)

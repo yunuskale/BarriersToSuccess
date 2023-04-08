@@ -7,7 +7,7 @@ public class GameManager : MonoBehaviour
     public static GameManager instance;
     public bool isGame = false;
     public bool pcActive = false;
-    public int levelTime = 600;
+    public int levelTime = 500;
     [SerializeField] private GameObject level1;
     private GameObject currentLevel;
     private void Awake()
@@ -23,6 +23,8 @@ public class GameManager : MonoBehaviour
     }
     public void StartGame()
     {
+        Camera.main.transform.position = new Vector3(6, 25, -10);
+        Camera.main.transform.eulerAngles = new Vector3(70, 0, 0);
         currentLevel = Instantiate(level1);
         isGame = true;
         pcActive = false;

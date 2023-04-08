@@ -287,6 +287,26 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &239586148 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8619338778009079851, guid: 47a3741b253f088469eedd6d403dd89a, type: 3}
+  m_PrefabInstance: {fileID: 1756751116}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &239586149
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 239586148}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2dd065e80a7d2534ab005821cc4d29f8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pointA: {x: 0, y: 0, z: 0}
+  pointB: {x: 0, y: 0, z: 0}
+  speed: 2
 --- !u!1001 &265521828
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2884,9 +2904,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 238cc66ed11f121458cb3876a7529f2a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pointA: {x: 0, y: 0, z: 0}
-  pointB: {x: 0, y: 0, z: 0}
-  speed: 2
   anim: {fileID: 1792010691}
   joystick: {fileID: 335147905}
   cameraTransform: {fileID: 963194228}

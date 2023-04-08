@@ -4,10 +4,8 @@ using UnityEngine;
 
 public class Movement : MonoBehaviour
 {
-    public Vector3 pointA;//m Ýlk olarak, karakterin hareket edeceði iki noktanýn konumunu Vector3 türünden deðiþkenlerle tanýmladým.
-    public Vector3 pointB;//m
-    private Vector3 target;// m Daha sonra, karakterin hareket etmesini istediðimiz yönü belirleyen bir hedef deðiþkeni tanýmladým.
-    [SerializeField] private int speed;//m 
+   
+    
     [SerializeField] private Animator anim;
     [SerializeField] private DynamicJoystick joystick;
     [SerializeField] private Transform cameraTransform;
@@ -19,21 +17,8 @@ public class Movement : MonoBehaviour
     private float m_currentH = 0;
     [SerializeField] private Vector3 rot;
 
-    void Start()
-    {
-        target = pointA;// m Start() fonksiyonu içerisinde, hedef deðiþkenini ilk olarak pointA olarak ayarladým.
-    }
-    void FixedUpdate()
-    {
-        // m Hedefe doðru hareket et
-        transform.position = Vector3.MoveTowards(transform.position, target, speed * Time.deltaTime);
-
-        // m Eðer hedefe ulaþtýysan, hedefi deðiþtir
-        if (transform.position == target)
-        {
-            target = (target == pointA) ? pointB : pointA;
-        }
-    }
+   
+    
     void Update()
     {
 

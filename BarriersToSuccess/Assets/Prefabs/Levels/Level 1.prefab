@@ -1798,6 +1798,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 306108736628162719}
+  - component: {fileID: 8502949059417047263}
   m_Layer: 0
   m_Name: Level 1
   m_TagString: Untagged
@@ -1826,6 +1827,19 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8502949059417047263
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 306108736628162720}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5ce732b82202346439738d0b3d129284, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  time: 500
 --- !u!1 &306108736638123163
 GameObject:
   m_ObjectHideFlags: 0
@@ -4047,8 +4061,6 @@ MonoBehaviour:
   joystick: {fileID: 8419477048464172450}
   cameraTransform: {fileID: 0}
   moveSpeed: 7
-  clampX: {x: 0, y: 0}
-  clampZ: {x: 0, y: 0}
   isHide: 0
 --- !u!114 &306108736946858808
 MonoBehaviour:
@@ -8893,11 +8905,11 @@ RectTransform:
   m_Father: {fileID: 306108737932849665}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 1, y: 0.5}
-  m_AnchorMax: {x: 1, y: 0.5}
-  m_AnchoredPosition: {x: -193, y: -194.01369}
-  m_SizeDelta: {x: 200, y: 200}
-  m_Pivot: {x: 1, y: 0.5}
+  m_AnchorMin: {x: 1, y: 0}
+  m_AnchorMax: {x: 1, y: 0}
+  m_AnchoredPosition: {x: -154, y: 177}
+  m_SizeDelta: {x: 356.0036, y: 305.854}
+  m_Pivot: {x: 1, y: 0}
 --- !u!222 &2125414274604436463
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -8919,16 +8931,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 0.4745098}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
+  m_Sprite: {fileID: 21300000, guid: 8d2946b9eb21606418bff64b07297246, type: 3}
   m_Type: 0
-  m_PreserveAspect: 0
+  m_PreserveAspect: 1
   m_FillCenter: 1
   m_FillMethod: 4
   m_FillAmount: 1

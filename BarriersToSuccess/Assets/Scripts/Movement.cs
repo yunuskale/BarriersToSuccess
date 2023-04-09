@@ -4,17 +4,14 @@ using UnityEngine;
 using DG.Tweening;
 public class Movement : MonoBehaviour
 {
-   
-    
     [SerializeField] private Animator anim;
     [SerializeField] private DynamicJoystick joystick;
     [SerializeField] private Transform cameraTransform;
     [SerializeField] private float moveSpeed;
-    [SerializeField] private Vector2 clampX, clampZ;
-    private readonly float interpolation = 10;
-    private Vector3 m_currentDirection = Vector3.zero;
-    private float m_currentV = 0;
-    private float m_currentH = 0;
+    private float interpolation = 10;
+    private Vector3 currentDirection = Vector3.zero;
+    private float currentV = 0;
+    private float currentH = 0;
     public bool isHide;
 
     private void Start()
@@ -29,10 +26,10 @@ public class Movement : MonoBehaviour
         float v = joystick.Vertical;
         float h = joystick.Horizontal;
 
-        m_currentV = Mathf.Lerp(m_currentV, v, Time.deltaTime * interpolation);
-        m_currentH = Mathf.Lerp(m_currentH, h, Time.deltaTime * interpolation);
+        currentV = Mathf.Lerp(currentV, v, Time.deltaTime * interpolation);
+        currentH = Mathf.Lerp(currentH, h, Time.deltaTime * interpolation);
 
-        Vector3 direction = cameraTransform.forward * m_currentV + cameraTransform.right * m_currentH;
+        Vector3 direction = cameraTransform.forward * currentV + cameraTransform.right * currentH;
 
         float directionLength = direction.magnitude;
         direction.y = 0;
@@ -40,13 +37,13 @@ public class Movement : MonoBehaviour
 
         if (v != 0 && h != 0)
         {
-            if(isHide)
+            if (isHide)
             {
                 CancelHide();
             }
             anim.SetBool("run", true);
-            m_currentDirection = Vector3.Slerp(m_currentDirection, direction, Time.deltaTime * interpolation);
-            transform.SetPositionAndRotation(transform.position + m_currentDirection * moveSpeed * Time.deltaTime, Quaternion.LookRotation(m_currentDirection));
+            currentDirection = Vector3.Slerp(currentDirection, direction, Time.deltaTime * interpolation);
+            transform.SetPositionAndRotation(transform.position + currentDirection * moveSpeed * Time.deltaTime, Quaternion.LookRotation(currentDirection));
 
 
         }
@@ -55,14 +52,13 @@ public class Movement : MonoBehaviour
             anim.SetBool("run", false);
         }
 
-        //Vector3 clampingPos = new Vector3(Mathf.Clamp(transform.position.x, clampX.x, clampX.y), transform.position.y, Mathf.Clamp(transform.position.z, clampZ.x, clampZ.y));
-        //transform.position = clampingPos;
     }
 
     public void Hide()
     {
         if(!isHide)
         {
+            SoundManager.instance.PlaySoundEffects(SoundManager.AudioCallers.box);
             transform.GetChild(2).GetComponent<ParticleSystem>().Play();
             isHide = true;
             transform.GetChild(0).gameObject.SetActive(false);

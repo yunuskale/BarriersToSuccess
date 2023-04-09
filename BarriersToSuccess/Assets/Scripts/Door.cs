@@ -17,6 +17,10 @@ public class Door : MonoBehaviour
         {
             StartCoroutine(doorController.OpenDoors());
         }
+        else
+        {
+            SoundManager.instance.PlaySoundEffects(SoundManager.AudioCallers.incorrect);
+        }
     }
     
 }

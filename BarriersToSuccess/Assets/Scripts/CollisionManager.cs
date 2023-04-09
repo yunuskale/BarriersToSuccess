@@ -27,6 +27,7 @@ public class CollisionManager : MonoBehaviour
         }
         else if (other.gameObject.CompareTag("akademikParca"))
         {
+            SoundManager.instance.PlaySoundEffects(SoundManager.AudioCallers.item);
             boomParticle.transform.position = other.transform.position;
             boomParticle.Play();
             Destroy(other.gameObject);
@@ -34,18 +35,20 @@ public class CollisionManager : MonoBehaviour
         }
         else if (other.gameObject.CompareTag("kart"))
         {
+            SoundManager.instance.PlaySoundEffects(SoundManager.AudioCallers.item);
             boomParticle.transform.position = other.transform.position;
             boomParticle.Play();
             Destroy(other.gameObject);
             UIManager.instance.KartAnim(kartIndex, other.gameObject.GetComponent<PassCard>().password);
             kartIndex++;
         }
-        else if (other.gameObject.CompareTag("pc") && GameManager.instance.pcActive)
+        else if (other.gameObject.CompareTag("pc") && GameManager.instance.PcActive)
         {
             GameManager.instance.Win();
             winParticle.transform.position = other.transform.position;
             winParticle.Play();
             GetComponent<Movement>().enabled = false;
+            GetComponent<Animator>().SetBool("run", false);
         }
     }
     private void OnTriggerExit(Collider other)

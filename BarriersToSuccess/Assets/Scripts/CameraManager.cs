@@ -9,7 +9,7 @@ public class CameraManager : MonoBehaviour
     [SerializeField] private float positionPlusY, positionPlusZ;
     private void LateUpdate()
     {
-        if(GameManager.instance.isGame)
+        if(GameManager.instance.IsGame)
         {
             Vector3 newPos = new Vector3(playerTransform.position.x, playerTransform.position.y + positionPlusY, playerTransform.position.z + positionPlusZ);
             transform.position = Vector3.Slerp(transform.position, newPos, lerpValue);

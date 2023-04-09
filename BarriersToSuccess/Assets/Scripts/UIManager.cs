@@ -54,6 +54,7 @@ public class UIManager : MonoBehaviour
             {
                 winPanel.SetActive(true);
                 currentPanel = winPanel;
+                gamePanel.GetComponent<Image>().color = new Color(1, 1, 1, 0);
             });
         });       
 
@@ -64,8 +65,8 @@ public class UIManager : MonoBehaviour
         altKapan.DOAnchorPosY(0, 1f);
         ustKapan.DOAnchorPosY(0, 1f).OnComplete(() =>
         {
-            ustKapan.anchoredPosition = Vector2.up * Screen.height * 1.3f;
-            altKapan.anchoredPosition = Vector2.down * Screen.height * 1.3f;
+            ustKapan.anchoredPosition = Vector2.up * 1300;
+            altKapan.anchoredPosition = Vector2.down * 1300;
             losePanel.SetActive(true);
             currentPanel = losePanel;
             
@@ -114,7 +115,7 @@ public class UIManager : MonoBehaviour
                 {
                     if (bar.fillAmount > 0.95)
                     {
-                        GameManager.instance.pcActive = true;
+                        GameManager.instance.PcActive = true;
                     }
                 });
             });
@@ -123,9 +124,9 @@ public class UIManager : MonoBehaviour
     WaitForSeconds oneSecond = new WaitForSeconds(1);
     public IEnumerator CountDown()
     {
-        int time = GameManager.instance.levelTime;
+        int time = GameManager.instance.LevelTime;
 
-        while (time > 0 && GameManager.instance.isGame)
+        while (time > 0 && GameManager.instance.IsGame)
         {
             yield return oneSecond;
             time -= 1;
